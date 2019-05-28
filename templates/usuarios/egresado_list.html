@@ -1,0 +1,146 @@
+{%extends 'base/base.html'%}
+
+{% block extrastatic%}
+<style>
+#Select1
+{
+	margin: 0px;
+	width: 1100px;
+}
+#Select2
+{
+	margin: -150px 0 0 190px;
+	width: 800px;
+}
+#Select3
+{
+	margin: -175px 0 0 400px;
+	width: 600px;
+}
+#Select4
+{
+	margin: -173px 0 0 610px;
+	width: 500px;
+}
+#search-egresados
+{
+	margin: -200px 0 0 0px;
+}
+</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+{% endblock%}
+{% load staticfiles %}
+{%load crispy_forms_tags%}
+
+
+{% block content %}
+<div  class="container col-md-6 col-md-9">
+	<br>
+	<br>
+	<h3>Buscar Solicitudes</h3>
+
+<form method="post" action="/usuarios/listado">
+	{% csrf_token %}
+            <div class="form-group" id="Select1">
+                    <label for="exampleSelect1">Carrera</label>
+                    <select name="srh" class="col-lg-2 col-md-12 form-control" >
+					  					<option value="">Todos</option>
+                      <option>Software</option>
+                      <option>Civil</option>
+                      <option>Geodesia</option>
+                      <option>Proc. Industriales</option>
+                    </select>
+            </div>
+            <br>
+				<br>
+				<br>
+            <div class="form-group"id="Select2">
+                    <label for="exampleSelect1">Generación</label>
+                    <select  name="sel1" class="col-lg-3 col-md-12 form-control" >
+                      <option value="">Todos</option>
+                      <option>2012-2017</option>
+                      <option>2013-2018</option>
+                      <option>2014-2019</option>
+                      <option>2015-2020</option>
+                    </select>
+            </div>
+            <br>
+				  <br>
+				<br>
+				<br>
+            <div class="form-group" id="Select3">
+                    <label for="exampleSelect1">Género</label>
+                    <select  name="sel2" class="col-lg-4 col-md-12 form-control" >
+                      <option value="">Todos</option>
+                      <option>Masculino</option>
+                      <option>Femenino</option>
+                    </select>
+            </div>
+						<br>
+						<br>
+						<br>
+						<br>
+            <div class="form-group"  id="Select4">
+                    <label for="exampleSelect1">Medio de Titulación</label>
+                    <select name="sel3" class="col-lg-5 col-md-12 form-control">
+											<option value="">Todos</option>
+                      <option>EGEL</option>
+                      <option>Promedio</option>
+                      <option>Tesina</option>
+                      <option>Tesis</option>
+                      <option>Examen de Inglés TOEFL</option>
+                    </select>
+            </div>
+            <br>
+			<br>
+			<button class="btn btn-secondary my-2 my-sm-0" id="search-egresados" type="submit">Buscar</button>
+				<br>
+				<br>
+</form>	
+	<div>
+		{% if messages %}
+		<ul class="messages">
+			{% for k in messages %}
+			<li style="color: red">{{k}}</li>
+			{% endfor %}
+		</ul>
+		{% endif%}
+	</div>	
+<div  class="card-body table-full-widtd table-responsive">
+		<h4>Número de egresados encontrados: {{contador}}</h4>
+	<table class="table table-hover table-striped" id="egresados">
+		<thead>
+			<tr>
+			<th>#</th>
+			<th>Nombre</th>
+			<th>Generación</th>
+			<th>Género</th>
+			<th>Carrera</th>
+			<th>Medio de Titulación</th>
+		</tr>
+		</thead>
+		<tbody>
+				{% if egresado %}
+				
+				{% for k in egresado %}
+				<tr>
+					<td>{{k.id }}</td>
+					<td>{{k.nombre }}</td>
+					<td>{{k.generacion }}</td>
+					<td>{{k.genero }}</td>
+					<td>{{k.carrera }}</td>
+					<td>{{k.medio }}</td>	
+				
+				</tr>
+				
+				{% endfor %}
+				
+				{% endif %}
+			</tbody>
+
+	</table>     
+
+
+</div>
+{% endblock%}

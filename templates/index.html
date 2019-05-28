@@ -1,0 +1,141 @@
+{%extends 'base/base.html'%}
+{% load staticfiles %}
+
+{%block extrastatic%}
+<link rel="stylesheet" href="{%static 'indexAssets/web/assets/mobirise-icons/mobirise-icons.css'%}">
+<link rel="stylesheet" href="{%static 'indexAssets/theme/css/style.css'%}">
+<link rel="stylesheet" href="{%static 'indexAssets/mobirise/css/mbr-additional.css'%}" type="text/css">
+<link rel="stylesheet" href="{%static 'indexAssets/css/style.css'%}">
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<style>
+ #H1
+ {
+     height: 60%;
+     width: 80;
+     margin-left: 60;
+     color: black;
+ }
+ #sec
+ {
+     font-size: xx-large ;
+     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     color:black;
+ }
+ #header2-f
+ {
+     background-color: silver;
+ } 
+</style>
+{%endblock%}
+
+
+{%block content%}
+
+{%if not request.user.is_authenticated%}
+<section class="cid-qJt8
+VDa5Sx mbr-fullscreen mbr-parallax-background" id="header2-f">
+    <div class="container align-center">
+        <div class="row justify-content-md-center">
+                <div class="mbr-white col-md-10">
+                    <div id="H1" class="jumbotron">
+                        <h1  class="display-3">Bienvenido, usuario</h1>
+                        <p class="lead">Este espacio ha sido creado para facilitar el proceso de titulacion de los egresados.</p>
+                        <hr class="my-4">
+                        <p>A traves de la automatizacion de procesos seras capaz de conocer el estado de cada una de las solicitudes.</p>
+                      </div>     
+                </div>
+                 
+</section>
+{%else%} 
+<section  class="cid-qJt8
+VDa5Sx mbr-fullscreen mbr-parallax-background" id="header2-f">
+    <div class="container align-center">
+        <div class="row justify-content-md-center">
+                <div  class="mbr-white col-md-10">
+                <a id="sec" href="{%url 'egresados'%}">Registrar Solicitud de Egresado   <i class="fa fa-check"></i></a>
+                <br>
+                <br>
+                <br>
+                <a id="sec" href="{%url 'busqueda'%}">Búsqueda de Solicitudes   <i class="fa fa-check"></i></a>
+                <br>
+                <br>
+                <br>
+                <a id="sec" href="{%url 'convocar'%}">Convocar a Reunión  <i class="fa fa-check"></i></a>
+                <br>
+                <br>
+                <br>
+                <a id="sec" href="{%url 'minuta'%}">Registrar Minuta de Reunión  <i class="fa fa-check"></i></a>
+                <br>
+                <br>
+                <br>
+                <a id="sec" href="{%url 'listaminutas'%}">Lista de Minutas<i class="fa fa-check"></i></a>
+                <br>
+                <br> 
+                <br>
+                <a id="sec" href="{%url 'grafica'%}">Estadisticas<i class="fa fa-check"></i></a>
+                <br>
+                <br>  
+                <br>
+                <a id="sec" href="{%url 'report'%}">Reporte<i class="fa fa-check"></i></a>
+                <br>
+                <br>  
+                </div>
+                <p>
+                        
+                </p>
+                 
+</section>
+{%endif%}
+    <section class="engine"></section><section class="cid-qJt8VEMmmh" id="footer1-g">
+        <div class="container">
+            <div class="media-container-row content text-white">
+                <div class="col-12 col-md-3">
+                    <div class="media-wrap">
+                        <img src="{% static 'imagenes/UAS.png'%}">
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                    <h5 class="pb-3">
+                       Dirección
+                    </h5>
+                    <p class="mbr-text">
+                        Fuente de Poseidón y Ángel Flores s/n, Col. Jiquilpan Módulo B2
+                        <br>Los Mochis, Sinaloa
+                    </p>
+                </div>
+                <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                    <h5 class="pb-3">
+                        Contáctanos
+                    </h5>
+                    <p class="mbr-text">
+                        Email: fim@uas.edu.mx
+                        <br> Tel./FAX 01(668)8127641
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}
+
+{%block scripts%}
+<script type="text/javascript">
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */(document.getElementById('pac-input')),
+          {types: ['geocode']});
+      autocomplete.addListener('place_changed', fillInAddress);
+    }
+  
+    function fillInAddress() {
+      var place = autocomplete.getPlace();
+  
+    }
+      </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwaYxp9FNqlqrD39VaI1G8BGieF02zAnc&libraries=places&callback=initAutocomplete"
+       async defer></script>
+<script src="{%static 'indexAssets/tether/tether.min.js'%}"></script>
+<script src="{%static 'indexAssets/smoothscroll/smooth-scroll.js'%}"></script>
+<script src="{%static 'indexAssets/parallax/jarallax.min.js'%}"></script>
+<script src="{%static 'indexAssets/theme/js/script.js'%}"></script>
+<script src="{%static 'indexAssets/js/index.js'%}"></script>
+{%endblock%}

@@ -1,0 +1,428 @@
+{% extends 'base/base.html' %}
+
+{% block extrastatic %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    // TODO: Eficientar codigo
+    function mostrar() {
+            div = document.getElementById('Charts');
+            div.style.display = '';
+        }
+
+        function cerrar() {
+            div = document.getElementById('Charts');
+            div.style.display = 'none';
+        }
+        // -----1
+        function mostrar2() {
+            div = document.getElementById('Charts2');
+            div.style.display = '';
+        }
+
+        function cerrar2() {
+            div = document.getElementById('Charts2');
+            div.style.display = 'none';
+        }
+        // ---2
+        function mostrar3() {
+            div = document.getElementById('Charts3');
+            div.style.display = '';
+        }
+
+        function cerrar3() {
+            div = document.getElementById('Charts3');
+            div.style.display = 'none';
+        }
+        // ----3
+        function mostrar4() {
+            div = document.getElementById('Charts4');
+            div.style.display = '';
+        }
+
+        function cerrar4() {
+            div = document.getElementById('Charts4');
+            div.style.display = 'none';
+        }
+        // ----4
+        function mostrar5() {
+            div = document.getElementById('Charts5');
+            div.style.display = '';
+        }
+
+        function cerrar5() {
+            div = document.getElementById('Charts5');
+            div.style.display = 'none';
+        }
+        // -----5
+        function mostrar6() {
+            div = document.getElementById('Charts6');
+            div.style.display = '';
+        }
+
+        function cerrar6() {
+            div = document.getElementById('Charts6');
+            div.style.display = 'none';
+        }
+        // ---6
+        $(document).ready(function(){            
+           var endpoint = '/usuarios/graficas'
+           var defaultData = [];
+           var labels = [];
+           var items2 = [];
+           var labels2= [];
+           var gitems = [];
+           var glabels= [];
+           var gcitems = [];
+           var ggitems = [];
+           var giitems = [];
+           $.ajax({
+               method: "GET",
+               url: endpoint,
+               success: function(data)
+               {
+                   labels = data.labels
+                   defaultData = data.default
+                   items2 = data.items
+                   labels2 = data.labels2
+                   glabels = data.glabels
+                   gitems = data.gitems
+                   gcitems = data.gcitems
+                   ggitems = data.ggitems
+                   giitems = data.giitems
+                   console.log(gcitems)
+                   setChart() 
+                   },
+               error: function(error_data){
+                   console.log("error")
+                   console.log(error_data)
+               }
+           })
+           function setChart()
+           {
+            var ctx = document.getElementById('myChart');
+            var ctx2 = document.getElementById('myChart2');
+            var ctx3 = document.getElementById('myChart3');
+            var ctx4 = document.getElementById('myChart4');
+            var ctx5 = document.getElementById('myChart5');
+            var ctx6 = document.getElementById('myChart6');
+            var myChart = new Chart(ctx2, {
+                            type: 'bar',
+                            data: {
+                                labels: labels2,
+                                datasets: [{
+                                    label: 'Número de egresados por carrera',
+                                    data: items2,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Número de egresados por género',
+                                    data: defaultData,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                        var myChart = new Chart(ctx3, {
+                            type: 'line',
+                            data: {
+                                labels: glabels,
+                                datasets: [{
+                                    label: 'Número de egresados de Software por generación',
+                                    data: gitems,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                        var myChart = new Chart(ctx4, {
+                            type: 'line',
+                            data: {
+                                labels: glabels,
+                                datasets: [{
+                                    label: 'Número de egresados de Civil por generación',
+                                    data: gcitems,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                        var myChart = new Chart(ctx5, {
+                            type: 'line',
+                            data: {
+                                labels: glabels,
+                                datasets: [{
+                                    label: 'Número de egresados de Geodesia por generación',
+                                    data: ggitems,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });   
+                        var myChart = new Chart(ctx6, {
+                            type: 'line',
+                            data: {
+                                labels: glabels,
+                                datasets: [{
+                                    label: 'Número de egresados de Proc. Industriales por generación',
+                                    data: giitems,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });   
+           }
+       })
+    
+
+        //   function setChart(){
+        //     var ctx = document.getElementById('myChart');
+                        
+        //   } 
+           </script>
+
+{% endblock %}
+
+{% block content %}
+<div  class="container col-md-6 col-md-9">
+        <form id="formulario" method="POST">
+                {%csrf_token%}
+                {{carrers}}
+        <div class='col-sm-14' url-endpoint='{% url "grafica" %}'>
+                <br>
+                <div class="form-group">
+                <h1>Estadísticas de Titulación</h1>
+                <h4>Egresados por género*</h4>
+                <br>
+                <button type="button" class="btn btn-info"><a href="javascript:mostrar();">Mostrar gráfica</a></button>
+                <button type="button" class="btn btn-danger"><a href="javascript:cerrar();">Ocultar gráfica</a></button>
+                <div id="Charts" style="display:none;" >
+                        
+                    <div class='col-sm-9'>
+                            <canvas id="myChart" width="800" height="600"></canvas>
+                    </div>
+                </div>
+                
+                 <br> 
+                 <br>
+                 <h4>Número total de egresados por carrera*</h4>
+                <br>
+                <button type="button" class="btn btn-info"><a href="javascript:mostrar2();">Mostrar gráfica</a></button>
+                <button type="button" class="btn btn-danger"><a href="javascript:cerrar2();">Ocultar gráfica</a></button>
+                <div id="Charts2" style="display:none;" >
+                        
+                    <div class='col-sm-9'>
+                            <canvas id="myChart2" width="800" height="600"></canvas>
+                    </div>
+                </div>
+                <br>
+                 <br> 
+                 <br>
+                 <h4>Egresados de Software por generación*</h4>
+                <br>
+                <button type="button" class="btn btn-info"><a href="javascript:mostrar3();">Mostrar gráfica</a></button>
+                <button type="button" class="btn btn-danger"><a href="javascript:cerrar3();">Ocultar gráfica</a></button>
+                <div id="Charts3" style="display:none;" >
+                        
+                    <div class='col-sm-9'>
+                            <canvas id="myChart3" width="800" height="600"></canvas>
+                    </div>
+                </div>
+                 <br>
+                 <br>
+                 <h4>Egresados de Civil por generación*</h4>
+                <br>
+                <br>
+                <button type="button" class="btn btn-info"><a href="javascript:mostrar4();">Mostrar gráfica</a></button>
+                <button type="button" class="btn btn-danger"><a href="javascript:cerrar4();">Ocultar gráfica</a></button>
+                <div id="Charts4" style="display:none;" >
+                        
+                    <div class='col-sm-9'>
+                            <canvas id="myChart4" width="800" height="600"></canvas>
+                    </div>
+                </div>
+                 <br>
+                 <br>
+                 <h4>Egresados de Geodesia por generación*</h4>
+                <br>
+                <br>
+                <button type="button" class="btn btn-info"><a href="javascript:mostrar5();">Mostrar gráfica</a></button>
+                <button type="button" class="btn btn-danger"><a href="javascript:cerrar5();">Ocultar gráfica</a></button>
+                <div id="Charts5" style="display:none;" >
+                       
+                    <div class='col-sm-9'>
+                            <canvas id="myChart5" width="800" height="600"></canvas>
+                    </div>
+                </div>
+                 <br>
+                 <br>
+                 <h4>Egresados de Procesos Industriales por generación*</h4>
+                 <br> 
+                 <br>
+                 <button type="button" class="btn btn-info"><a href="javascript:mostrar6();">Mostrar gráfica</a></button>
+                 <button type="button" class="btn btn-danger"><a href="javascript:cerrar6();">Ocultar gráfica</a></button>
+                 <div id="Charts6" style="display:none;" >
+                         
+                     <div class='col-sm-9'>
+                             <canvas id="myChart6" width="800" height="600"></canvas>
+                     </div>
+                 </div>
+                  <br>
+                  <br>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+

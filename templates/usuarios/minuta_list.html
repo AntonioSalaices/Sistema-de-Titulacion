@@ -1,0 +1,42 @@
+{%extends 'base/base.html'%}
+{% load staticfiles %}
+{%load crispy_forms_tags%}
+
+
+{% block content %}
+<div  class="container col-lg-9 col-md-12">
+        <br>
+        <br>
+        <br>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Tipo de Reunión</td>
+			<td>Título de la Reunión</td>
+			<td>Lista de Asistencia</td>
+			<td>Puntos Tratados</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% if minutas %}
+		<h1>Registro de Minutas de Reunión</h1>
+    	<br>
+        <br>
+		{% for minuta in minutas %}
+		<tr>
+			<td>{{ minuta.id }}</td>
+			<td>{{ minuta.tiporeunion }}</td>
+			<td>{{ minuta.titulo }}</td>
+			<td>{{ minuta.lista_asistencia }}</td>
+            <td>{{ minuta.puntos }}</td>
+		</tr>
+		{% endfor %}
+		
+		{% else %}
+		<h1>No hay registros de Minutas</h1>
+		{% endif %}
+	</tbody>
+</table> 
+</div>
+{% endblock%}

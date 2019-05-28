@@ -1,0 +1,151 @@
+{% load staticfiles %}
+{%load crispy_forms_tags%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Comisión Académica de Titulación</title>
+   <style>
+    
+     strong
+     {
+       color: white;
+     }
+     #btn
+     {
+       background-color:#092c83;
+     }
+     #btn2
+     {
+       background-color:#092c83; 
+     }
+     #btn3
+     {
+      background-color:#092c83;
+     }
+     #img
+     {
+       border-image-width: 100px;
+     }
+  
+   </style>
+
+   <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+   <link rel="stylesheet" href="{%static 'css/estiloChicho.css'%}">
+   <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   {% block extrastatic %}
+	{% endblock %}
+</head>
+<body>
+  <nav id="nav" class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="{%url 'index'%}">
+          <img id="img" src="{%static 'imagenes/UAS.png'%}" width="90px" height="90px">
+          Facultad de Ingeniería Mochis - Comisión Académica de Titulación
+        </a>
+        <br>
+    <button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="navbar-collapse collapse" id="navbarsExampleDefault" aria-expanded="false">
+      <ul class="navbar-nav mr-auto">
+        
+      </ul>
+      <div style="margin-right: 5%;" class="form-inline my-2 my-lg-0">
+        {%if not request.user.is_authenticated%}
+        <button id="btn" type="button" style="margin-right:8px;" class="btn btn-primary my-2 my-sm-0" data-toggle="modal" data-target="#iniciarSesion"><i class="fa fa-users"></i> Iniciar sesión</button>
+        {%else%}
+        <strong>¡Bienvenido! </strong>
+      </div>
+        <div class="btn-group">
+            <button id="btn2" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"title="Clickea aquí para ver las demás opciones">
+                {{request.user.username}}
+            </button>
+            <div class="dropdown-menu dropdown-menu">
+              <a title="Click aquí para salir de su cuenta" href="{%url 'logout'%}" class="dropdown-item"><i class="fa fa-times-circle"></i> Salir</a>
+            </div>
+          </div>
+        {%endif%}
+      </div>
+    </div>
+  </nav>
+    
+    {%block content%}
+    {% if messages %}
+    <ul class="messages">{% for message in messages %} <li{% if message.tags == "success" %} class="alert alert-success"{%else%}class="alert alert-danger"{% endif %}>{{ message }}</li>{% endfor %}</ul>
+   	{% endif %}
+    {%endblock%}
+   
+
+
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="iniciarSesion">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 title="Click aqui para iniciar sesion" class="modal-title">Iniciar sesión</h4>
+        <button  type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+         <form role="form" method="POST" action="{%url 'login'%}">
+            <div class="form-group">
+               {%csrf_token%}
+               {{login|crispy}}
+               
+            </div>
+            <div style="text-align: center;">
+              <button id="btn3" type="submit" class="btn btn-primary"><i class="fa fa-check"></i>  Continuar</button>
+              <br>
+              
+              
+              <br>
+              <h6>¿No tienes cuenta? <a style="color: #149dcc;" href="{%url 'registrar'%}">Crea una</a></h6>
+             </div>
+         </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="{%static 'js/jquery-3.3.1.min.js'%}"></script>
+<script src="{%static 'js/jquery.mask.js'%}"></script>
+<script src="{%static 'js/popper.min.js'%}"></script>
+<script src="{%static 'js/bootstrap.min.js'%}"></script>
+
+
+
+
+
+{%block scripts%}
+<script src="{%static 'js/jquery-3.3.1.min.js'%}"></script>
+<script src="{%static 'js/jquery.mask.js'%}"></script>
+<script src="{%static 'js/bootstrap.min.js'%}"></script>
+
+ 
+
+{%endblock%}
+
+
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+{%extends 'base/base.html'%}
+{% load staticfiles %}
+{%load crispy_forms_tags%}
+{%block extrastatic%}
+<link rel="stylesheet" href="{%static 'css/publicar.css'%}">
+<style>
+#id_btn_registrar
+{
+    background-color: #092c83;
+}
+body
+{
+background-color: black;
+}
+#id_frm_registrar
+{
+color: white;
+}
+</style>
+{%endblock%}
+{%block content%}
+<div  class="container col-lg-9 col-md-12">
+    <form id="id_frm_registrar" method="POST">
+        {%csrf_token%}
+        <div id="div_id_correo" class="form-group">
+            <br>
+            <h4>Registro de Solicitudes de Titulación</h4>
+                <br>
+                <br>
+            <label class="form-control-label">
+                Nombre de egresado*
+            </label>
+            <input maxlength="30" name="nombre" class="col-lg-9 col-md-12 form-control" type="text">
+            <strong id="id_strong_correo" style="color:red;font-size: 11;visibility: hidden;"></strong>
+        </div>
+        
+        <div class="form-group" >
+            <label  class="form-control-label">
+                Apellido paterno*
+            </label>
+            <input maxlength="18" class="col-lg-9 col-md-12 form-control"  name="apellidoPaterno" type="text">
+            <strong  style="color:red;font-size: 11;visibility: hidden;"></strong>
+        </div>
+        
+        <div class="form-group" >
+                <label  class="form-control-label">
+                    Apellido materno*
+                </label>
+                <input maxlength="18" class="col-lg-9 col-md-12 form-control"  name="apellidoMaterno" type="text">
+        </div>
+        <br>
+            <div class="form-group">
+                    <label for="exampleSelect1">Generación</label>
+                    <select  name="generacion" class="col-lg-9 col-md-12 form-control" id="Select2">
+                      <option value="">Por favor selecciona una opción</option>
+                      <option>2012-2017</option>
+                      <option>2013-2018</option>
+                      <option>2014-2019</option>
+                      <option>2015-2020</option>
+                    </select>
+            </div>
+            <br>
+        <div class="form-group">
+                <label for="exampleSelect1">Género</label>
+                <select name="genero" class="col-lg-9 col-md-12 form-control" id="exampleSelect2">
+                  <option>Femenino</option>
+                  <option>Masculino</option>
+                </select>
+        </div>
+        <br>
+            <div class="form-group">
+                    <label for="exampleSelect1">Carrera</label>
+                    <select name="carrera" class="col-lg-9 col-md-12 form-control" id="exampleSelect2">
+                      <option>Software</option>
+                      <option>Civil</option>
+                      <option>Geodesia</option>
+                      <option>Proc. Industriales</option>
+                    </select>
+            </div>
+            <br>
+            <div class="form-group">
+                    <label for="exampleSelect1">Medio de Titulación</label>
+                    <select name="medio" class="col-lg-9 col-md-12 form-control" id="exampleSelect1">
+                      <option>EGEL</option>
+                      <option>Promedio</option>
+                      <option>Tesina</option>
+                      <option>Tesis</option>
+                      <option>Examen de Inglés TOEFL</option>
+                    </select>
+            </div>
+            <br>
+        <br>
+        <div style="text-align: center;">
+            <button id="id_btn_registrar" class="btn btn-success" type="submit" value="Entrar"><i class="fa fa-cloud"></i>  Aceptar</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </form>
+    
+</div>
+
+{%endblock%}
+
+{%block scripts%}
+
+{%endblock%}

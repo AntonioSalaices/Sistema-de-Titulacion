@@ -1,0 +1,49 @@
+{%extends 'base/base.html'%}
+{% load staticfiles %}
+{%load crispy_forms_tags%}
+
+
+{% block content %}
+<div  class="container col-lg-9 col-md-12">
+        <br>
+        <br>
+        <br>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Apellido Paterno</td>
+			<td>Apellido Materno</td>
+			<td>Género</td>
+			<td>Carrera</td>
+			<td>Medio de Titulación</td>
+			<td>Generación</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if egresados %}
+		<h1>Registro de Solicitudes de Titulación</h1>
+    	<br>
+        <br>
+		{% for egresado in egresados %}
+		<tr>
+			<td>{{ egresado.id }}</td>
+			<td>{{ egresado.nombre }}</td>
+			<td>{{ egresado.apellidoPaterno }}</td>
+			<td>{{ egresado.apellidoMaterno }}</td>
+            <td>{{ egresado.genero }}</td>
+            <td>{{ egresado.carrera }}</td>
+			<td>{{ egresado.medio }}</td>	
+			<td>{{ egresado.generacion }}</td>
+		</tr>
+		{% endfor %}
+		
+		{% else %}
+		<h1>No hay registros de solicitudes</h1>
+		{% endif %}
+	</tbody>
+</table> 
+</div>
+{% endblock%}

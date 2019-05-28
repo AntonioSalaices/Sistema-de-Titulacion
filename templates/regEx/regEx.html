@@ -1,0 +1,36 @@
+{%extends 'base/base.html'%}
+{% load staticfiles %}
+
+{%block content%}
+<h1>weather forcast</h1>
+<button id="btn">view</button>
+<p id ="test">change me</p>
+<p id ="place">place</p>
+<p id ="temp">temperature</p>
+<p id ="description">description</p>
+    
+{%endblock%}
+{%block scripts%}
+<script>
+var getWeather = function(data) {
+    $.getJSON('http://api.openweathermap.org/data/2.5/weather', {
+        lat: data.lat,
+        lon: data.lon,
+        appid: "[APIKEY HERE]"
+    }, showWeather, 'jsonp');
+};
+
+var showWeather = function(data) {
+    $("#test").text("I AM CHANGED. THANKS!")
+    $("#temp").text(data.main.temp)
+    $("#description").text(data.weather[0].description)
+    $("#place").text(data.name)
+};
+
+$(document).ready(function() {
+    $("#btn").click(function() {
+        $.getJSON('http://ip-api.com/json', getWeather)
+    })
+})
+</script>
+{%endblock%}

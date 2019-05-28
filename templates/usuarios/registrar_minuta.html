@@ -1,0 +1,57 @@
+{%extends 'base/base.html'%}
+{% load staticfiles %}
+{%load crispy_forms_tags%}
+{%block extrastatic%}
+{%endblock%}
+<style>
+#text
+{
+    width: 228px; 
+    height: 98px;
+}
+</style>
+{%block content%}
+<div  class="container col-lg-9 col-md-12">
+        <br>
+        <h1>Registro de Minuta de la Reunión</h1>
+        <h4> Hora: {{horas}}</h4>
+        <h4> Fecha: {{fechas}}</h4>
+        <h4> Lugar: Los Mochis, Sinaloa.</h4>
+    <form id="formulario" method="POST">
+        {%csrf_token%}
+        <br>
+        <br>
+        <br>
+            <div class="form-group">
+                    <label for="exampleSelect1">Tipo de Reunión </label>
+                    <select name="tiporeunion" class="col-lg-9 col-md-12 form-control" id="Select2">
+                      <option>Ordinaria</option>
+                      <option>Extraordinaria</option>
+                    </select>
+            </div>
+            <br>
+            <div class="form-group" >
+                    <label  class="form-control-label">
+                        Título de la Reunión*
+                    </label>
+                    <input  class="col-lg-9 col-md-12 form-control"  name="titulo" type="text">
+                    <strong  style="color:red;font-size: 11;visibility: hidden;"></strong>
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea">Lista de Asistencia*</label>
+                    <textarea name="lista_asistencia" class="form-control" id="exampleTextarea" rows="3"></textarea>
+            </div>    
+            <div class="form-group">
+                    <label for="exampleTextarea">Puntos tratados*</label>
+                    <textarea name="puntos" class="form-control" id="exampleTextarea" rows="3"></textarea>
+            </div>
+        <div style="text-align: center;">
+            <button  class="btn btn-success" type="submit" value="Entrar">Aceptar</button>
+        </div>
+        <br>
+        <br>
+    </form>
+    
+</div>
+
+{%endblock%}

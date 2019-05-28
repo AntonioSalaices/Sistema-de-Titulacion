@@ -1,0 +1,72 @@
+{%extends 'base/base.html'%}
+{% load staticfiles %}
+{%load crispy_forms_tags%}
+{%block extrastatic%}
+{%endblock%}
+<style>
+#text
+{
+    width: 228px; 
+    height: 98px;
+}
+</style>
+{%block content%}
+<div  class="container col-lg-9 col-md-12">
+        <br>
+        <br>
+        <br>
+        <table  class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Email</td>
+                        <td>Último acceso</td>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    {{horas}}
+                    {% if users %}
+                    <h1>Registro de Miembros de la Comisión Académica de Titulación</h1>
+                    <br>
+                    <br>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user }}</td>
+                        <td>{{ user.last_login }}</td>
+                    </td>
+                        
+                    </tr>
+                    {% endfor %}
+                    
+                    {% else %}
+                    <h1>No hay registros de miembros</h1>
+                    {% endif %}
+                </tbody>
+            </table> 
+    <form id="formulario" method="POST">
+        {%csrf_token%}
+        
+        <div class="form-group" >
+                <label  class="form-control-label">
+                    Correo Electrónico*
+                </label>
+                <input  class="col-lg-9 col-md-12 form-control"  name="correo" type="email">
+                <strong  style="color:red;font-size: 11;visibility: hidden;"></strong>
+            </div>
+            
+            <div class="form-group">
+                    <label for="exampleTextarea">Mensaje*</label>
+                    <textarea name="mensaje" class="form-control" id="exampleTextarea" rows="3"></textarea>
+            </div>
+        <div style="text-align: center;">
+            <button class="btn btn-success" type="submit" value="Entrar">Aceptar</button>
+        </div>
+        <br>
+        <br>
+    </form>
+    
+</div>
+
+{%endblock%}
